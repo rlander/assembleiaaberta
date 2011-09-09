@@ -1,0 +1,18 @@
+<table class="zebra-striped">
+    <tr>
+        <th>Sess&atilde;o</th>
+        <th>Presen&ccedil;a</th>
+    </tr>
+	{% for presenca in object.presenca_set.all %}
+		<tr>
+			<td>{{ presenca.sessao.numero }}&ordf;</td>
+			<td>
+    			{% if presenca.justificativa %}
+    			    <a href="#" original-title="{{ presenca.justificativa }}" class="tipsy">{{ presenca.presenca }}</a>
+    			{% else %}
+    			    {{ presenca.presenca }}
+    			{% endif %}
+			</td>
+		</tr>	
+{% endfor %}
+</table>

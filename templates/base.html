@@ -1,0 +1,60 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} : {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="{{ STATIC_URL }}bootstrap-1.1.1.css" rel="stylesheet">
+    
+    <!-- Le scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    
+    <!-- Le fav and touch icons 
+    <link rel="shortcut icon" href="images/favicon.ico">-->
+    {% block extra_head_base %}
+        {% block extra_head %}{% endblock %}
+    {% endblock %}
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <h3><a href="/">Assembl&eacute;iaAberta</a></h3>
+          <ul>
+            <li class="active"><a href="/">In&iacute;cio</a></li>
+            <li><a href="#codigo_fonte">C&oacute;digo Fonte</a></li>
+            <li><a href="#api">API</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    
+        {% block body %}
+        {% endblock %}
+  
+      {% block footer %}
+      <div class="container">
+          <footer>
+            <p>AssembléiaAberta 2011</p>
+          </footer>
+      </div>
+      {% endblock %}
+
+    
+
+  {% block extra_body %}{% endblock %}
+  </body>
+</html>

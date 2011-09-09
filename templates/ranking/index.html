@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Assembl&eacute;ia Aberta{% endblock %}
+
+{% block body %}
+    
+    <!-- Masthead (blueprinty thing)
+    ================================================== -->
+    <div id="masthead">
+      <div class="inner">
+        <div class="container">
+          <h1>Tornando a Assembl&eacute;ia Verdadeiramente Transparente</h1>
+          <p class="lead">
+            O Assembl&eacute;iaAberta ajuda a tornar a informa&ccedil;&atilde;o legislativa mais acess&iacute;vel e transparente<br />
+            atrav&eacute;s da divulga&ccedil;&atilde;o e an&aacute;lise de dados oficiais do governo.<br />
+          </p>
+          <p><strong>Ah:</strong> tamb&eacute;m temos um ranking que n&atilde;o vai sair do ar!</p>
+        </div><!-- /container -->
+      </div>
+    </div>
+    
+    <div class="container">
+        <section id="ranking">
+            <div class="page-header">
+                <h1>Ranking de Assiduidade</h1>
+            </div>
+            <div class="row">
+                <div class="span4 columns">
+                    <h2>Ordem inversa</h2>
+                    <p>A assiduidade &eacute; calculada relativamente ao n&uacute;mero de sess&otilde;es desde o in&iacute;cio do mandato.</p>
+                    <p>Por exemplo, um deputado que compareceu a 44 sess&otilde;es de 55 desde o princ&iacute;pio de seu mandato, ter&aacute; uma assiduidade de 80%.<p>
+                    <p>Portanto, <strong>o n&uacute;mero 1 do ranking &eacute; o mais faltoso </strong>e o &uacute;ltimo &eacute; o mais ass&iacute;duo.</p>
+                </div>
+                <div class="span12 columns">
+                    <table class="zebra-striped">
+                        <tr>
+                            <th>Posi&ccedil;&atilde;o</th>
+                            <th>Nome</th>
+                            <th>Assiduidade</th>
+                        </tr>
+                        {% for d in ranking %}
+                    		<tr>
+                    			<td>{{ forloop.counter }}.&nbsp;</td>
+                    			<td><a href={% url ranking_deputado_detail d.slug %}>{{ d }}</a></td>
+                    			<td>{{ d.porcentagem_de_presencas }}%</td>
+                    		</tr>	
+                    	{% endfor %}
+                    </table>
+                </div>
+            </div> <!--/row -->
+        </section>
+        
+        <section id="sobre">
+            <div class="page-header">
+                <h1>Sobre</h1>
+            </div>
+            <div class="row">
+                <div class="span6 columns">
+                    <h3>O que é?</h3>
+                    <p>O objetivo do AssembléiaAberta é apresentar a informação legislativa da Alesc de forma realista e transparente, através da divulgação e análise de dados oficiais do governo.</p>
+                    <p>O site é inspirado no <a href="http://www.opencongress.org">OpenCongress</a>, <a href="http://www.govtrack.us">GovtTrack</a> e, claro no <a href="http://www.deputadometro.com.br">Deputadômetro</a> .
+                </div>
+                <div class="span5 columns">
+                    <h3>Como?</h3>
+                    <p>Além do ranking (inverso) de assiduidade, o site também disponibiliza histórico de votação e histórico de presença plenária (com as justificativas) por deputado, e a correlação de votos: o cálculo da frequencia com que os deputados votam juntos. Abaixo da foto de cada deputado estão listados os colegas cujos votos estão correlacionados mais fortemente.</p>  
+                    <p>O código fonte justamente com as instruções de como colocá-lo online estão disponíveis no Github (a idéia é permitir que qualquer cidadão possa colocar seu próprio "deputadômetro" no ar) está disponível e os dados por trás do site para quem quiser construir um site ou ferramenta superior para analisá-los</p>
+                    <p>O processo de coleta dos dados é todo automatizado; um robô diariamente acessa o site da Alesc e coleta os dados oficiais.</p>
+                </div>
+                <div class="span5 columns">
+                    <h3>Quem criou?</h3>
+                     <p>Meu nome é Rodrigo Landerdahl (<a href="http://http://twitter.com/#!/rlander">@rlander</a> no twitter) e, como muitos catarinenses, fiquei frustrado com a retirada do ar do ranking do site deputadômetro. Por isso, decidi colocar a mão na massa, perder algumas noites de sono, e fazer uma alternativa.</p>
+                </div>
+            </div>
+        </section>
+	
+	</div> <!-- /container -->
+ 
+{% endblock %}

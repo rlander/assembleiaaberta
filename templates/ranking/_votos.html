@@ -1,0 +1,14 @@
+<table class="zebra-striped">
+    <tr>
+        <th>Proposi&ccedil;&atilde;o</th>
+        <th>Data da Vota&ccedil;&atilde;o</th>
+        <th>Voto</th>
+    </tr>
+	{% for voto in object.voto_set.all %}
+		<tr>
+			<td>{{ voto.proposicao.codigo }}</td>
+			<td>{{ voto.proposicao.sessao.data|date:"d\/m\/Y" }}</td>
+			<td>{{ voto.voto }}</td>
+		</tr>	
+{% endfor %}
+</table>

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{{ object.nome }}{% endblock %}
+
+{% block extra_head %}
+<link href="{{ STATIC_URL }}css/tipsy.css" rel="stylesheet">
+<script src="{{ STATIC_URL }}js/tabs.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.tipsy.js"></script>
+<script type='text/javascript'>
+  $(function() {
+    $('.tipsy').tipsy({gravity: 'w'});
+  });
+</script>
+
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin-top:60px;">        
+        <div class="page-header"><h1>{{ object.nome }}</h1></div>
+
+        <div class="row">
+            <div class="span4 columns">
+                <p><img src={{ object.foto }}></p>
+                <h4>&Uacute;ltimas elei&ccedil;&otilde;es</h4>
+            	<p>{{ object.votos_ultima_eleicao }}</p>
+            	<h4>Assiduidade</h4>
+            	<p>{{ object.porcentagem_de_presencas }}%</p>
+            	<h4>Vota com</h4>
+            	<ul>
+            	    {% for i,v in object.vota_com %}
+            	    <li>{{ v }} - {{ i }}%</li>
+            	    {% empty %}
+            	    <li>Dados insuficientes</li>
+            	    {% endfor %}
+            	</ul>
+            </div>
+    
+            <div class="span12 columns">
+            	<ul class="pills">
+                  <li class="active"><a href="#dados_pessoais">Dados Pessoais</a></li>
+                  <li><a href="#votos">Votos</a></li>
+                  <li><a href="#presenca">Presenca Plen&aacute;ria</a></li>
+                </ul>
+
+            	<ul class="tabs-content">
+            	    <li class="active" id="dados_pessoais">
+            	        {% include "ranking/_dados_pessoais.html" %}
+            	    </li>
+            	    <li id="votos">
+            	        {% include "ranking/_votos.html" %}
+                    </li>
+                    <li id="presenca">
+                        {% include "ranking/_presenca.html"%}
+                    </li>
+            	</ul>
+            </div>
+        </div> <!-- /row -->
+    	
+    </div> <!-- /container -->
+
+{% endblock %}
